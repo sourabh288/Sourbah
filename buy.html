@@ -5,28 +5,160 @@
   <title>Buy YouTube Channels - YTMarketStore</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
   <style>
-    /* ... existing styles ... */
+    /* Basic Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-    /* Button container for side by side buttons */
+    /* Header Styles */
+    header {
+      background-color: #1abc9c;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      color: #16a085;
+      outline: none;
+    }
+
+    /* Page Title */
+    .page-title {
+      margin: 30px auto 40px;
+      text-align: center;
+      font-size: 2.4rem;
+      color: #16a085;
+    }
+
+    /* Category Section */
+    .category-section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto 50px;
+    }
+
+    .category-section h2 {
+      color: #16a085;
+      font-size: 1.9rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #1abc9c;
+      padding-bottom: 6px;
+      user-select: none;
+    }
+
+    /* Channel Cards Container */
+    .channel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    /* Channel Card */
+    .channel-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+
+    .channel-card:hover {
+      transform: scale(1.04);
+    }
+
+    .channel-card img {
+      width: 110px;
+      height: 110px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 18px;
+      user-select: none;
+    }
+
+    .channel-card h3 {
+      font-size: 1.3rem;
+      color: #2c3e50;
+      margin-bottom: 8px;
+      user-select: text;
+    }
+
+    .channel-card p {
+      color: #555;
+      margin-bottom: 5px;
+      user-select: text;
+    }
+
+    .channel-card .price {
+      color: #1abc9c;
+      font-weight: 600;
+      margin-bottom: 15px;
+      user-select: text;
+    }
+
+    /* Buttons side by side */
     .btn-group {
       display: flex;
       gap: 15px;
-      margin-top: 15px;
       justify-content: center;
+      width: 100%;
     }
 
     button, a.button-link {
+      flex: 1;
       font-weight: 600;
-      padding: 10px 22px;
+      padding: 12px 0;
       border-radius: 8px;
       cursor: pointer;
       border: none;
       font-size: 1rem;
       transition: background-color 0.3s ease;
       text-decoration: none;
-      display: inline-block;
       text-align: center;
       user-select: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .buy-btn {
@@ -35,20 +167,27 @@
       border: 2px solid #16a085;
     }
 
-    .buy-btn:hover {
+    .buy-btn:hover,
+    .buy-btn:focus {
       background-color: #16a085;
       border-color: #13856e;
+      outline: none;
     }
 
     .details-btn {
       background-color: #34495e;
       color: white;
       border: 2px solid #2c3e50;
+      text-decoration: none;
+      line-height: 1.2;
+      display: inline-block;
     }
 
-    .details-btn:hover {
+    .details-btn:hover,
+    .details-btn:focus {
       background-color: #2c3e50;
       border-color: #22303a;
+      outline: none;
     }
 
     /* Modal styles */
@@ -62,6 +201,7 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      overflow-y: auto;
     }
 
     .modal.active {
@@ -76,8 +216,6 @@
       width: 100%;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       position: relative;
-      overflow-y: auto;
-      max-height: 80vh;
     }
 
     .modal-content h3 {
@@ -89,27 +227,91 @@
       color: #555;
       line-height: 1.5;
       margin-bottom: 20px;
+      user-select: text;
     }
 
     .modal-content img {
-      max-width: 100px;
+      max-width: 120px;
       border-radius: 12px;
       margin-bottom: 20px;
+      user-select: none;
     }
 
     .modal-close {
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: 700;
       color: #888;
       cursor: pointer;
       user-select: none;
+      transition: color 0.3s ease;
     }
 
-    .modal-close:hover {
+    .modal-close:hover,
+    .modal-close:focus {
       color: #1abc9c;
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      background: #111;
+      color: #ccc;
+      padding: 30px 20px;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .footer-left h3 {
+      color: #1abc9c;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .footer-left p span {
+      display: inline-block;
+      margin-bottom: 3px;
+      user-select: none;
+    }
+
+    .footer-right nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      user-select: none;
+    }
+
+    .footer-right nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-right nav ul li a:hover,
+    .footer-right nav ul li a:focus {
+      color: #1abc9c;
+      outline: none;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 20px;
+      color: #555;
+      font-size: 0.8rem;
+      user-select: none;
     }
 
   </style>
@@ -128,9 +330,11 @@
     </nav>
   </header>
 
-  <h1 class="page-title">Buy YouTube Channels</h1>
+  <main>
+    <h1 class="page-title">Buy YouTube Channels</h1>
+  </main>
 
-  <!-- Channel sections will be generated here -->
+  <!-- Categories and cards will be inserted before footer -->
 
   <footer>
     <div class="footer-container">
@@ -163,9 +367,9 @@
   </footer>
 
   <!-- BUY MODAL -->
-  <div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle">
+  <div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle" tabindex="-1">
     <div class="modal-content">
-      <span class="modal-close" id="modalCloseBtn" aria-label="Close modal">&times;</span>
+      <span class="modal-close" id="modalCloseBtn" aria-label="Close modal" role="button" tabindex="0">&times;</span>
       <h3 id="buyModalTitle">Buy Channel</h3>
       <img id="modalChannelImage" src="" alt="Channel Image" />
       <h4 id="modalChannelName"></h4>
@@ -199,45 +403,34 @@
 
       const title = document.createElement('h2');
       title.textContent = category;
-      title.style.margin = '40px 0 20px';
-      title.style.fontSize = '1.8rem';
-      title.style.color = '#1abc9c';
       container.appendChild(title);
 
       const grid = document.createElement('div');
       grid.className = 'channel-container';
       container.appendChild(grid);
 
-      document.body.insertBefore(container, document.querySelector('footer'));
+      // Insert before footer
+      const footer = document.querySelector('footer');
+      footer.parentNode.insertBefore(container, footer);
       categoryMap.set(category, grid);
     }
 
     function createCard(channel) {
       const card = document.createElement('div');
-      card.style.background = '#fff';
-      card.style.borderRadius = '16px';
-      card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-      card.style.padding = '20px';
-      card.style.display = 'flex';
-      card.style.flexDirection = 'column';
-      card.style.alignItems = 'center';
-      card.style.textAlign = 'center';
-      card.style.transition = 'transform 0.3s';
-      card.onmouseover = () => card.style.transform = 'scale(1.03)';
-      card.onmouseout = () => card.style.transform = 'scale(1)';
+      card.className = 'channel-card';
 
       card.innerHTML = `
-        <img src="${channel.Image}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
-        <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
-        <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
-        <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
+        <img src="${channel.Image}" alt="Channel Image" />
+        <h3>${channel.Name}</h3>
+        <p>Subscribers: ${channel.Subscribers}</p>
+        <p class="price">Price: ₹${channel.Price}</p>
         <div class="btn-group">
           <button class="buy-btn" aria-label="Buy ${channel.Name} Channel">Buy</button>
           <a href="${channel.Link}" target="_blank" rel="noopener" class="details-btn button-link" aria-label="See details of ${channel.Name} Channel">See Details</a>
         </div>
       `;
 
-      // Add event listener for Buy button to open modal with channel info
+      // Buy button event
       const buyBtn = card.querySelector('.buy-btn');
       buyBtn.addEventListener('click', () => {
         modalChannelImage.src = channel.Image;
@@ -247,8 +440,8 @@
         modalChannelPrice.textContent = channel.Price;
 
         buyModal.classList.add('active');
-        // Disable background scroll
         document.body.style.overflow = 'hidden';
+        buyModal.focus();
       });
 
       return card;
@@ -278,20 +471,7 @@
         });
     }
 
-    // Close modal when clicking close button or outside modal content
+    // Close modal on clicking close icon or outside modal content
     modalCloseBtn.addEventListener('click', () => {
       buyModal.classList.remove('active');
       document.body.style.overflow = '';
-    });
-
-    buyModal.addEventListener('click', (e) => {
-      if (e.target === buyModal) {
-        buyModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-
-    window.addEventListener('DOMContentLoaded', init);
-  </script>
-</body>
-</html>
