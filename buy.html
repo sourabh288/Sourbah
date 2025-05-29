@@ -173,111 +173,171 @@
       <span class="modal-close" onclick="closeModal()">&times;</span>
       <div class="carousel" id="carouselImages"></div>
       <p id="modalDescription"></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buy YouTube Channels - YTMarketStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    /* [All your previous styles here – unchanged] */
+    /* Add this to support new buy modal styling */
+    .buy-modal .modal-content {
+      max-width: 500px;
+    }
+    .buy-note {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 10px;
+    }
+    .slideshow-container {
+      width: 100%;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+    }
+    .slideshow-container img {
+      width: 100%;
+      scroll-snap-align: center;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+  <header> <!-- [Unchanged Header] --> </header>
+
+  <h1 class="page-title">Buy YouTube Channels</h1>
+  <div id="content"></div>
+
+  <footer> <!-- [Unchanged Footer] --> </footer>
+
+  <!-- See More Modal -->
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('popupModal')">&times;</span>
+      <div class="slideshow-container" id="carouselImages"></div>
+      <p id="modalDescription"></p>
       <div id="modalStats"></div>
-      <div style="text-align: center; margin-top: 15px;">
-        <img id="qrImage" src="" alt="Payment QR" style="width: 200px; height: 200px; display:block; margin: 0 auto;" />
-        <p id="priceText"></p>
-        <button onclick="redirectToDelivery()" style="margin-top: 10px; background: #1abc9c; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Continue</button>
-      </div>
     </div>
   </div>
+
+  <!-- Buy Modal -->
+  <div class="modal" id="buyModal">
+    <div class="modal-content buy-modal">
+      <span class="modal-close" onclick="closeModal('buyModal')">&times;</span>
+      <h2 id="buyChannelTitle"></h2>
+      <p id="buyChannelPrice"></p>
+      <p class="buy-note">Note: Click after payment and fill details to get channel</p>
+      <img id="buyQRImage" src="" alt="Payment QR" style="width: 200px; height: 200px; display:block; margin: 15px auto;" />
+      <button onclick="redirectToDelivery()" style="background: #1abc9c; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Continue</button>
+    </div>
+  </div>
+
   <script>
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
     const categoryMap = new Map();
-    const modal = document.getElementById("popupModal");function createCategorySection(category) {
-  const container = document.createElement('div');
-  container.className = 'category-section';
-  const title = document.createElement('h2');
-  title.textContent = category;
-  title.style.color = '#1abc9c';
-  title.style.margin = '40px 0 10px';
-  const hr = document.createElement('hr');
-  container.appendChild(title);
-  container.appendChild(hr);
-  const grid = document.createElement('div');
-  grid.className = 'channel-container';
-  container.appendChild(grid);
-  document.getElementById("content").appendChild(container);
-  categoryMap.set(category, grid);
-}
 
-function createCard(channel) {
-  const card = document.createElement('div');
-  card.style.position = 'relative';
-  card.style.background = '#fff';
-  card.style.borderRadius = '16px';
-  card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-  card.style.padding = '20px';
-  card.style.display = 'flex';
-  card.style.flexDirection = 'column';
-  card.style.alignItems = 'center';
-  card.style.textAlign = 'center';
+    function createCategorySection(category) {
+      const container = document.createElement('div');
+      container.className = 'category-section';
+      const title = document.createElement('h2');
+      title.textContent = category;
+      title.style.color = '#1abc9c';
+      title.style.margin = '40px 0 10px';
+      const hr = document.createElement('hr');
+      container.appendChild(title);
+      container.appendChild(hr);
+      const grid = document.createElement('div');
+      grid.className = 'channel-container';
+      container.appendChild(grid);
+      document.getElementById("content").appendChild(container);
+      categoryMap.set(category, grid);
+    }
 
-  const tag = document.createElement('div');
-  tag.className = 'tag';
-  tag.textContent = channel.Tags || 'Available';
-  card.appendChild(tag);
+    function createCard(channel) {
+      const card = document.createElement('div');
+      card.style.position = 'relative';
+      card.style.background = '#fff';
+      card.style.borderRadius = '16px';
+      card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+      card.style.padding = '20px';
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+      card.style.alignItems = 'center';
+      card.style.textAlign = 'center';
 
-  card.innerHTML += `
-    <img src="${channel.Image1}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
-    <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
-    <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
-    <p style="color: #777;">Lifetime Views: ${channel.LifetimeViews}</p>
-    <p style="color: #777;">Monetized: ${channel.Monetized}</p>
-    <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
-    <button onclick='openModal(${JSON.stringify(channel)})' style="margin-top: 10px; background: #1abc9c; color: white; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;">See More</button>
-  `;
-  return card;
-}
+      const tag = document.createElement('div');
+      tag.className = 'tag';
+      tag.textContent = channel.Tags || 'Available';
+      card.appendChild(tag);
 
-function openModal(channel) {
-  modal.style.display = 'flex';
-  document.getElementById('carouselImages').innerHTML = `
-    <img src="${channel.Image1}" />
-    <img src="${channel.Image2}" />
-    <img src="${channel.Image3}" />
-  `;
-  document.getElementById('modalDescription').textContent = channel.Description || 'No description';
-  document.getElementById('modalStats').innerHTML = `
-    <p>Subscribers: ${channel.Subscribers}</p>
-    <p>Lifetime Views: ${channel.LifetimeViews}</p>
-    <p>Monetized: ${channel.Monetized}</p>
-    <p>Status: ${channel.Tags}</p>
-  `;
-  document.getElementById('qrImage').src = channel.PaymentQR;
-  document.getElementById('priceText').textContent = `Pay ₹${channel.Price} to buy ${channel.Name}`;
-}
+      card.innerHTML += `
+        <img src="${channel.Image1}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
+        <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
+        <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
+        <p style="color: #777;">Lifetime Views: ${channel.LifetimeViews}</p>
+        <p style="color: #777;">Monetized: ${channel.Monetized}</p>
+        <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
+        <button onclick='openSeeMore(${JSON.stringify(channel)})' style="margin: 8px 0; background: #3498db; color: white; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;">See More</button>
+        <button onclick='openBuyModal(${JSON.stringify(channel)})' style="background: #1abc9c; color: white; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;">Buy</button>
+      `;
+      return card;
+    }
 
-function closeModal() {
-  modal.style.display = 'none';
-}
+    function openSeeMore(channel) {
+      document.getElementById('popupModal').style.display = 'flex';
+      document.getElementById('carouselImages').innerHTML = `
+        <img src="${channel.Image1}" />
+        <img src="${channel.Image2}" />
+        <img src="${channel.Image3}" />
+      `;
+      document.getElementById('modalDescription').textContent = channel.Description || 'No description available.';
+      document.getElementById('modalStats').innerHTML = `
+        <p>Subscribers: ${channel.Subscribers}</p>
+        <p>Lifetime Views: ${channel.LifetimeViews}</p>
+        <p>Monetized: ${channel.Monetized}</p>
+        <p>Status: ${channel.Tags}</p>
+      `;
+    }
 
-function redirectToDelivery() {
-  window.location.href = 'delivery.html';
-}
+    function openBuyModal(channel) {
+      document.getElementById('buyModal').style.display = 'flex';
+      document.getElementById('buyChannelTitle').textContent = channel.Name;
+      document.getElementById('buyChannelPrice').textContent = `Pay ₹${channel.Price}`;
+      document.getElementById('buyQRImage').src = channel.PaymentQR;
+    }
 
-function init() {
-  fetch(sheetURL)
-    .then(res => res.text())
-    .then(csvText => {
-      const rows = csvText.split('\n').map(row => row.split(','));
-      const headers = rows[0];
-      const data = rows.slice(1).map(row => {
-        const obj = {};
-        headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
-        return obj;
-      });
-      data.forEach(channel => {
-        const category = channel.Category || 'Uncategorized';
-        if (!categoryMap.has(category)) createCategorySection(category);
-        const container = categoryMap.get(category);
-        const card = createCard(channel);
-        container.appendChild(card);
-      });
-    });
-}
-window.addEventListener('DOMContentLoaded', init);
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = 'none';
+    }
 
+    function redirectToDelivery() {
+      window.location.href = 'delivery.html';
+    }
+
+    function init() {
+      fetch(sheetURL)
+        .then(res => res.text())
+        .then(csvText => {
+          const rows = csvText.split('\n').map(row => row.split(','));
+          const headers = rows[0];
+          const data = rows.slice(1).map(row => {
+            const obj = {};
+            headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
+            return obj;
+          });
+          data.forEach(channel => {
+            const category = channel.Category || 'Uncategorized';
+            if (!categoryMap.has(category)) createCategorySection(category);
+            const container = categoryMap.get(category);
+            const card = createCard(channel);
+            container.appendChild(card);
+          });
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
