@@ -2,152 +2,186 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Buy Channels - YTMarketStore</title>
+  <title>Buy YouTube Channels - YTMarketStore</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
   <style>
-    /* Reuse all your previous CSS for header, footer, etc. */
-    /* ... HEADER & FOOTER STYLES ... */
-    /* Only the buy section styling is new below */
-    .channel-section {
-      padding: 40px 20px;
-      background-color: #f0f2f5;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    .category-title {
-      font-size: 2rem;
-      margin: 30px 0 10px;
-      color: #2c3e50;
-      text-align: center;
-    }
-
-    .channel-card {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin: 20px;
-      max-width: 300px;
-      flex: 1 0 300px;
-      transition: transform 0.3s ease;
-    }
-
-    .channel-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .channel-grid {
+    body {
+      background-color: #f9fafb;
+      color: #333;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-radius: 0 0 12px 12px;
+      opacity: 0;
+      transform: translateY(-40px);
+      animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes headerEnter {
+      0% { opacity: 0; transform: translateY(-40px); }
+      70% { opacity: 1; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      user-select: none;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
+      transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
+    }
+
+    .logo:hover {
+      color: #1abc9c;
+      transform: scale(1.15);
+      text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+    }
+
+    nav ul li a {
+      color: #34495e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #1abc9c;
+      border-radius: 3px;
+      transform: translateX(-50%);
+      transition: width 0.35s, left 0.35s;
+    }
+
+    nav ul li a:hover::before {
+      width: 100%;
+      left: 0;
+      transform: none;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 60px 0 30px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+
+    .channel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px 50px 80px;
+    }
+
+    .category-section {
+      padding: 0 50px;
+    }
+
+    footer {
+      background: #121212;
+      color: #ccc;
+      padding: 40px 50px;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+      margin-top: auto;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
-      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
       gap: 20px;
     }
 
-    .channel-card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-
-    .tags, .badges {
-      margin: 10px 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .tag, .badge {
-      padding: 4px 10px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      background-color: #eee;
-    }
-
-    .monetized { background: #1abc9c; color: white; }
-    .non-monetized { background: #e74c3c; color: white; }
-
-    .buy-btn, .sold-btn, .details-btn {
-      display: inline-block;
-      padding: 10px 18px;
-      margin: 8px 6px 0 0;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .buy-btn { background: #1abc9c; color: white; }
-    .sold-btn { background: gray; color: white; cursor: not-allowed; }
-    .details-btn { background: #3498db; color: white; }
-
-    /* Modal */
-    .modal {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-    }
-
-    .modal-content {
-      background: white;
-      max-width: 600px;
-      width: 90%;
-      padding: 20px;
-      border-radius: 16px;
-      position: relative;
-    }
-
-    .close-modal {
-      position: absolute;
-      top: 10px; right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #888;
-    }
-
-    .slideshow-img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
+    .footer-left h3 {
+      font-size: 1.8rem;
       margin-bottom: 10px;
+      color: #1abc9c;
     }
 
-    .payment-qr {
-      width: 200px;
-      height: auto;
-      display: block;
-      margin: 15px auto;
+    .footer-left p {
+      max-width: 320px;
+      font-size: 1rem;
+      line-height: 1.5;
     }
 
-    .continue-btn {
-      display: block;
-      background: #27ae60;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 10px;
-      margin: 15px auto 0;
-      text-align: center;
-      text-decoration: none;
-      width: fit-content;
-    }
-
-    .card-container {
+    .footer-right nav ul {
+      list-style: none;
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      gap: 30px;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+
+    .footer-right nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-right nav ul li a:hover {
+      color: #1abc9c;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      margin-top: 20px;
+      width: 100%;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header copied from index.html -->
   <header>
-    <div class="logo">YTMarketStore</div>
+    <div class="logo" tabindex="0">YTMarketStore</div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -158,28 +192,21 @@
     </nav>
   </header>
 
-  <section class="channel-section" id="channel-list">
-    <h2 class="category-title">Loading channels...</h2>
-    <div class="channel-grid" id="cards-container"></div>
-  </section>
+  <h1 class="page-title">Buy YouTube Channels</h1>
 
-  <!-- Modal -->
-  <div class="modal" id="detailsModal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="document.getElementById('detailsModal').style.display='none'">&times;</span>
-      <img id="slideImage" class="slideshow-img" src="" alt="Slide" />
-      <p id="modalDesc"></p>
-      <img id="qrCode" class="payment-qr" src="" alt="QR Code">
-      <a href="delivery.html" class="continue-btn">Continue</a>
-    </div>
-  </div>
+  <!-- Channel sections will be generated here -->
 
-  <!-- Footer copied from index.html -->
   <footer>
     <div class="footer-container">
       <div class="footer-left">
         <h3>YTMarketStore</h3>
-        <p><span>Your</span> <span>one-stop</span> <span>shop</span> <span>for the best</span> <span>YouTube marketing tools and resources.</span></p>
+        <p>
+          <span>Your</span>
+          <span>one-stop</span>
+          <span>shop</span>
+          <span>for the best</span>
+          <span>YouTube marketing tools and resources.</span>
+        </p>
       </div>
       <div class="footer-right">
         <nav>
@@ -199,62 +226,80 @@
     </div>
   </footer>
 
-  <!-- JavaScript to fetch and render cards -->
+  <!-- DATA FETCH & CARD GENERATION -->
   <script>
-    const sheetID = '1sIFZBeD9B2Va4Qjv9DwB3tL8vGneWTZCVQo10xjs59M'; // Your sheet ID
-    const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
 
-    fetch(sheetURL)
-      .then(res => res.text())
-      .then(text => {
-        const json = JSON.parse(text.substr(47).slice(0, -2));
-        const data = json.table.rows.map(row => row.c.map(cell => cell?.v || ''));
+    const categoryMap = new Map();
 
-        const headers = json.table.cols.map(col => col.label.toLowerCase().trim());
-        const index = name => headers.indexOf(name);
+    function createCategorySection(category) {
+      const container = document.createElement('div');
+      container.className = 'category-section';
 
-        const container = document.getElementById('cards-container');
-        const categoryTitle = document.querySelector('.category-title');
-        categoryTitle.innerText = "Available Channels";
+      const title = document.createElement('h2');
+      title.textContent = category;
+      title.style.margin = '40px 0 20px';
+      title.style.fontSize = '1.8rem';
+      title.style.color = '#1abc9c';
+      container.appendChild(title);
 
-        data.forEach(row => {
-          const name = row[index('name')];
-          const category = row[index('category')];
-          const image1 = row[index('image1')];
-          const image2 = row[index('image2')];
-          const description = row[index('description')];
-          const monetized = row[index('monetized')];
-          const tags = (row[index('tags')] || '').split(',').map(t => t.trim());
-          const price = row[index('price')];
-          const status = row[index('status')];
-          const qr = row[index('qr')];
+      const grid = document.createElement('div');
+      grid.className = 'channel-container';
+      container.appendChild(grid);
 
-          const card = document.createElement('div');
-          card.className = 'channel-card';
-          card.innerHTML = `
-            <img src="${image1}" alt="${name}" loading="lazy">
-            <h3>${name}</h3>
-            <p>Category: ${category}</p>
-            <div class="badges">
-              <span class="badge ${monetized.toLowerCase() === 'yes' ? 'monetized' : 'non-monetized'}">${monetized}</span>
-            </div>
-            <div class="tags">${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
-            <p><strong>Price:</strong> ₹${price}</p>
-            <button class="${status.toLowerCase() === 'sold' ? 'sold-btn' : 'buy-btn'}" ${status.toLowerCase() === 'sold' ? 'disabled' : ''}>
-              ${status.toLowerCase() === 'sold' ? 'Sold' : 'Buy'}
-            </button>
-            <button class="details-btn" onclick="openDetails('${description.replace(/'/g, "\\'")}', '${image1}', '${image2}', '${qr}')">More Details</button>
-          `;
-          container.appendChild(card);
-        });
-      });
-
-    function openDetails(desc, img1, img2, qr) {
-      document.getElementById('modalDesc').innerText = desc;
-      document.getElementById('slideImage').src = img1;
-      document.getElementById('qrCode').src = qr;
-      document.getElementById('detailsModal').style.display = 'flex';
+      document.body.insertBefore(container, document.querySelector('footer'));
+      categoryMap.set(category, grid);
     }
+
+    function createCard(channel) {
+      const card = document.createElement('div');
+      card.style.background = '#fff';
+      card.style.borderRadius = '16px';
+      card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+      card.style.padding = '20px';
+      card.style.display = 'flex';
+      card.style.flexDirection = 'column';
+      card.style.alignItems = 'center';
+      card.style.textAlign = 'center';
+      card.style.transition = 'transform 0.3s';
+      card.onmouseover = () => card.style.transform = 'scale(1.03)';
+      card.onmouseout = () => card.style.transform = 'scale(1)';
+
+      card.innerHTML = `
+        <img src="${channel.Image}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
+        <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
+        <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
+        <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
+        <a href="${channel.Link}" target="_blank" style="margin-top: 15px; background: #1abc9c; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">See Details</a>
+      `;
+      return card;
+    }
+
+    function init() {
+      fetch(sheetURL)
+        .then(res => res.text())
+        .then(csvText => {
+          const rows = csvText.split('\n').map(row => row.split(','));
+          const headers = rows[0];
+          const data = rows.slice(1).map(row => {
+            const obj = {};
+            headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
+            return obj;
+          });
+
+          data.forEach(channel => {
+            const category = channel.Category || 'Uncategorized';
+            if (!categoryMap.has(category)) {
+              createCategorySection(category);
+            }
+            const container = categoryMap.get(category);
+            const card = createCard(channel);
+            container.appendChild(card);
+          });
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
