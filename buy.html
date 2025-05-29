@@ -2,487 +2,152 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Buy YouTube Channels - YTMarketStore</title>
+  <title>Buy Channels - YTMarketStore</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
   <style>
-    /* === SAME CSS AS index.html + upgrades === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+    /* Reuse all your previous CSS for header, footer, etc. */
+    /* ... HEADER & FOOTER STYLES ... */
+    /* Only the buy section styling is new below */
+    .channel-section {
+      padding: 40px 20px;
+      background-color: #f0f2f5;
     }
 
-    body {
-      background-color: #f9fafb;
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 50px;
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-radius: 0 0 12px 12px;
-      opacity: 0;
-      transform: translateY(-40px);
-      animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes headerEnter {
-      0% { opacity: 0; transform: translateY(-40px); }
-      70% { opacity: 1; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .logo {
+    .category-title {
       font-size: 2rem;
-      font-weight: 600;
+      margin: 30px 0 10px;
       color: #2c3e50;
-      user-select: none;
-      cursor: pointer;
-      letter-spacing: 1.5px;
-      text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
-      transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
-    }
-
-    .logo:hover {
-      color: #1abc9c;
-      transform: scale(1.15);
-      text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 35px;
-    }
-
-    nav ul li a {
-      color: #34495e;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding-bottom: 5px;
-      border-bottom: 2.5px solid transparent;
-      cursor: pointer;
-      position: relative;
-      transition: color 0.3s;
-    }
-
-    nav ul li a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: #1abc9c;
-      border-radius: 3px;
-      transform: translateX(-50%);
-      transition: width 0.35s, left 0.35s;
-    }
-
-    nav ul li a:hover::before {
-      width: 100%;
-      left: 0;
-      transform: none;
-    }
-
-    nav ul li a:hover {
-      color: #1abc9c;
-    }
-
-    .page-title {
       text-align: center;
-      margin: 60px 0 30px;
-      font-size: 2.5rem;
-      color: #2c3e50;
     }
 
-    /* Container for cards grouped by category */
-    #channelContainer {
-      padding: 20px 50px 80px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    hr.category-divider {
-      margin: 50px 0 25px;
-      border: none;
-      border-top: 2px solid #1abc9c;
-      opacity: 0.7;
-    }
-
-    .category-header {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #1abc9c;
-      margin-bottom: 25px;
-      user-select: none;
-    }
-
-    /* Card styling */
     .channel-card {
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      margin-bottom: 25px;
-      display: flex;
-      gap: 15px;
-      align-items: flex-start;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px;
+      max-width: 300px;
+      flex: 1 0 300px;
+      transition: transform 0.3s ease;
     }
 
     .channel-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
     }
 
-    .channel-image {
-      flex-shrink: 0;
-      width: 130px;
-      height: 90px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      background-color: #eee;
-    }
-
-    .channel-info {
-      flex-grow: 1;
+    .channel-grid {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .channel-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .tags, .badges {
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
       gap: 6px;
     }
 
-    .channel-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #2c3e50;
-      user-select: text;
-    }
-
-    .info-row {
-      font-size: 0.9rem;
-      color: #555;
-      user-select: text;
-    }
-
-    /* Badges styling */
-    .badge {
-      display: inline-block;
-      background-color: #1abc9c;
-      color: #fff;
+    .tag, .badge {
+      padding: 4px 10px;
+      border-radius: 8px;
       font-size: 0.75rem;
-      padding: 3px 8px;
-      border-radius: 15px;
-      margin-right: 6px;
-      font-weight: 600;
-      user-select: none;
-      text-transform: uppercase;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+      background-color: #eee;
     }
 
-    .badge.non-monetized {
-      background-color: #e74c3c;
-    }
+    .monetized { background: #1abc9c; color: white; }
+    .non-monetized { background: #e74c3c; color: white; }
 
-    /* Buttons container */
-    .buttons {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-    }
-
-    button.buy-btn {
-      background-color: #1abc9c;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-    }
-
-    button.buy-btn:disabled,
-    button.sold-btn {
-      background-color: #ccc;
-      cursor: not-allowed;
-      color: #666;
-    }
-
-    button.buy-btn:hover:not(:disabled) {
-      background-color: #159a83;
-    }
-
-    button.details-btn {
-      background: transparent;
-      border: 2px solid #1abc9c;
-      color: #1abc9c;
-      padding: 7px 14px;
+    .buy-btn, .sold-btn, .details-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin: 8px 6px 0 0;
       border-radius: 8px;
       font-weight: 600;
+      text-decoration: none;
       cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    button.details-btn:hover {
-      background-color: #1abc9c;
-      color: #fff;
-    }
+    .buy-btn { background: #1abc9c; color: white; }
+    .sold-btn { background: gray; color: white; cursor: not-allowed; }
+    .details-btn { background: #3498db; color: white; }
 
-    /* Price styling */
-    .price {
-      font-weight: 700;
-      color: #27ae60;
-      margin-top: 4px;
-      user-select: text;
-    }
-
-    /* Popup overlay */
-    #detailsPopup, #paymentPopup {
+    /* Modal */
+    .modal {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: rgba(0,0,0,0.6);
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 2000;
+      z-index: 9999;
     }
 
-    /* Popup box */
-    .popup-box {
-      background: #fff;
-      border-radius: 15px;
+    .modal-content {
+      background: white;
+      max-width: 600px;
       width: 90%;
-      max-width: 700px;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 25px 30px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      padding: 20px;
+      border-radius: 16px;
       position: relative;
-      user-select: text;
     }
 
-    /* Popup close button */
-    .popup-close {
+    .close-modal {
       position: absolute;
-      top: 18px;
-      right: 22px;
-      background: transparent;
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 700;
+      top: 10px; right: 15px;
+      font-size: 24px;
       cursor: pointer;
-      color: #999;
-      transition: color 0.25s ease;
+      color: #888;
     }
 
-    .popup-close:hover {
-      color: #e74c3c;
-    }
-
-    /* Slideshow container */
-    .slideshow {
-      position: relative;
+    .slideshow-img {
       width: 100%;
-      max-height: 320px;
-      overflow: hidden;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      background-color: #eee;
-    }
-
-    .slide-image {
-      width: 100%;
-      height: 320px;
+      height: 250px;
       object-fit: cover;
-      border-radius: 12px;
-      user-select: none;
-      display: none;
-    }
-
-    .slide-image.active {
-      display: block;
-    }
-
-    /* Slideshow arrows */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2.5rem;
-      color: rgba(255,255,255,0.8);
-      background: rgba(0,0,0,0.3);
-      padding: 4px 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      user-select: none;
-      transition: background 0.3s ease;
-      z-index: 10;
-      user-select: none;
-    }
-
-    .arrow:hover {
-      background: rgba(0,0,0,0.6);
-    }
-
-    .arrow.left {
-      left: 10px;
-    }
-
-    .arrow.right {
-      right: 10px;
-    }
-
-    /* Popup content */
-    .popup-description {
-      font-size: 1rem;
-      color: #444;
-      margin: 15px 0 25px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
-
-    .popup-price {
-      font-weight: 700;
-      font-size: 1.4rem;
-      color: #27ae60;
-      margin-bottom: 25px;
-      user-select: text;
-    }
-
-    /* Payment QR */
-    .payment-qr {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .payment-qr img {
-      width: 180px;
-      height: 180px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-    }
-
-    .payment-instruction {
-      font-size: 1rem;
-      color: #222;
-      text-align: center;
-      user-select: none;
-    }
-
-    /* Payment button */
-    button.confirm-pay-btn {
-      background-color: #1abc9c;
-      color: #fff;
-      border: none;
-      padding: 12px 28px;
-      font-weight: 700;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      user-select: none;
-      margin-top: 10px;
-      width: 100%;
-    }
-
-    button.confirm-pay-btn:hover {
-      background-color: #159a83;
-    }
-
-    /* Disabled buy button */
-    button.buy-btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-      color: #666;
-    }
-
-    footer {
-      background: #121212;
-      color: #ccc;
-      padding: 40px 50px;
-      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
-      margin-top: auto;
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 20px;
-    }
-
-    .footer-left h3 {
-      font-size: 1.8rem;
+      border-radius: 8px;
       margin-bottom: 10px;
-      color: #1abc9c;
-      user-select: none;
     }
 
-    .footer-left p {
-      max-width: 320px;
-      font-size: 1rem;
-      line-height: 1.5;
-      user-select: none;
+    .payment-qr {
+      width: 200px;
+      height: auto;
+      display: block;
+      margin: 15px auto;
     }
 
-    .footer-right nav ul {
-      list-style: none;
+    .continue-btn {
+      display: block;
+      background: #27ae60;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      margin: 15px auto 0;
+      text-align: center;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .card-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 30px;
-      padding: 0;
-      margin-bottom: 15px;
-    }
-
-    .footer-right nav ul li a {
-      color: #ccc;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-
-    .footer-right nav ul li a:hover {
-      color: #1abc9c;
-      text-decoration: underline;
-    }
-
-    .copyright {
-      font-size: 0.9rem;
-      color: #777;
-      text-align: center;
-      margin-top: 20px;
-      width: 100%;
-      user-select: none;
+      justify-content: center;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header copied from index.html -->
   <header>
-    <div class="logo" tabindex="0">YTMarketStore</div>
+    <div class="logo">YTMarketStore</div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -493,60 +158,103 @@
     </nav>
   </header>
 
-  <h1 class="page-title">Buy YouTube Channels</h1>
+  <section class="channel-section" id="channel-list">
+    <h2 class="category-title">Loading channels...</h2>
+    <div class="channel-grid" id="cards-container"></div>
+  </section>
 
-  <div id="channelContainer">
-    <!-- Cards inserted here -->
+  <!-- Modal -->
+  <div class="modal" id="detailsModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="document.getElementById('detailsModal').style.display='none'">&times;</span>
+      <img id="slideImage" class="slideshow-img" src="" alt="Slide" />
+      <p id="modalDesc"></p>
+      <img id="qrCode" class="payment-qr" src="" alt="QR Code">
+      <a href="delivery.html" class="continue-btn">Continue</a>
+    </div>
   </div>
 
-  <!-- Details Popup -->
-  <div id="detailsPopup" aria-hidden="true">
-    <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-      <button class="popup-close" aria-label="Close Details">&times;</button>
-      <div class="slideshow">
-        <img src="" alt="Channel image" class="slide-image active" />
-        <img src="" alt="Channel image" class="slide-image" />
-        <img src="" alt="Channel image" class="slide-image" />
-        <span class="arrow left" role="button" tabindex="0" aria-label="Previous Image">&#10094;</span>
-        <span class="arrow right" role="button" tabindex="0" aria-label="Next Image">&#10095;</span>
-      </div>
-      <h2 id="popupTitle"></h2>
-      <p class="popup-description"></p>
-      <div class="popup-price"></div>
-      <div class="buttons">
-        <button class="buy-btn popup-buy-btn">Buy Now</button>
-        <button class="details-btn popup-close-btn">Close</button>
-      </div>
-      <!-- Continued from previous code --></div>
-
-  </div>  <!-- Payment Popup -->  <div id="paymentPopup" aria-hidden="true">
-    <div class="popup-box" role="dialog" aria-modal="true" aria-labelledby="paymentTitle">
-      <button class="popup-close" aria-label="Close Payment Popup">&times;</button>
-      <h2 id="paymentTitle">Scan to Pay</h2>
-      <div class="payment-qr">
-        <img src="qr.png" alt="QR Code for Payment" id="qrImage">
-        <div class="payment-instruction">Scan this QR code to make payment.<br>After payment, click the button below to confirm.</div>
-      </div>
-      <button class="confirm-pay-btn">I Have Paid</button>
-    </div>
-  </div>  <footer>
+  <!-- Footer copied from index.html -->
+  <footer>
     <div class="footer-container">
       <div class="footer-left">
         <h3>YTMarketStore</h3>
-        <p>Your trusted platform to buy and sell YouTube channels with transparency and ease.</p>
+        <p><span>Your</span> <span>one-stop</span> <span>shop</span> <span>for the best</span> <span>YouTube marketing tools and resources.</span></p>
       </div>
       <div class="footer-right">
         <nav>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="buy.html">Buy</a></li>
-            <li><a href="channel-sell.html">Sell</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="channel-sell.html">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
           </ul>
         </nav>
-        <div class="copyright">&copy; 2025 YTMarketStore. All rights reserved.</div>
       </div>
     </div>
-  </footer>  <script src="buy.js"></script></body>
+    <div class="copyright">
+      &copy; 2025 YTMarketStore. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- JavaScript to fetch and render cards -->
+  <script>
+    const sheetID = '1sIFZBeD9B2Va4Qjv9DwB3tL8vGneWTZCVQo10xjs59M'; // Your sheet ID
+    const sheetURL = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json`;
+
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(text => {
+        const json = JSON.parse(text.substr(47).slice(0, -2));
+        const data = json.table.rows.map(row => row.c.map(cell => cell?.v || ''));
+
+        const headers = json.table.cols.map(col => col.label.toLowerCase().trim());
+        const index = name => headers.indexOf(name);
+
+        const container = document.getElementById('cards-container');
+        const categoryTitle = document.querySelector('.category-title');
+        categoryTitle.innerText = "Available Channels";
+
+        data.forEach(row => {
+          const name = row[index('name')];
+          const category = row[index('category')];
+          const image1 = row[index('image1')];
+          const image2 = row[index('image2')];
+          const description = row[index('description')];
+          const monetized = row[index('monetized')];
+          const tags = (row[index('tags')] || '').split(',').map(t => t.trim());
+          const price = row[index('price')];
+          const status = row[index('status')];
+          const qr = row[index('qr')];
+
+          const card = document.createElement('div');
+          card.className = 'channel-card';
+          card.innerHTML = `
+            <img src="${image1}" alt="${name}" loading="lazy">
+            <h3>${name}</h3>
+            <p>Category: ${category}</p>
+            <div class="badges">
+              <span class="badge ${monetized.toLowerCase() === 'yes' ? 'monetized' : 'non-monetized'}">${monetized}</span>
+            </div>
+            <div class="tags">${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+            <p><strong>Price:</strong> ₹${price}</p>
+            <button class="${status.toLowerCase() === 'sold' ? 'sold-btn' : 'buy-btn'}" ${status.toLowerCase() === 'sold' ? 'disabled' : ''}>
+              ${status.toLowerCase() === 'sold' ? 'Sold' : 'Buy'}
+            </button>
+            <button class="details-btn" onclick="openDetails('${description.replace(/'/g, "\\'")}', '${image1}', '${image2}', '${qr}')">More Details</button>
+          `;
+          container.appendChild(card);
+        });
+      });
+
+    function openDetails(desc, img1, img2, qr) {
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('slideImage').src = img1;
+      document.getElementById('qrCode').src = qr;
+      document.getElementById('detailsModal').style.display = 'flex';
+    }
+  </script>
+</body>
 </html>
