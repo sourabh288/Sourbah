@@ -1,477 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Buy YouTube Channels - YTMarketStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
-  <style>
-    /* Basic Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f9fafb;
-      color: #333;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Header Styles */
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Buy YouTube Channels - YTMarketStore</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9fafb;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background-color: #1abc9c;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  header .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+  }
+  nav ul li a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    color: #16a085;
+    outline: none;
+  }
+  .page-title {
+    margin: 30px auto 40px;
+    text-align: center;
+    font-size: 2.4rem;
+    color: #16a085;
+  }
+  .category-section {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+  }
+  .category-section h2 {
+    color: #16a085;
+    font-size: 1.9rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #1abc9c;
+    padding-bottom: 6px;
+    user-select: none;
+  }
+  .channel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 30px;
+  }
+  .channel-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+  .channel-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+  .channel-card img {
+    width: 130px;
+    height: 130px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    user-select: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .channel-card h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+    user-select: text;
+  }
+  .channel-info {
+    width: 100%;
+    color: #555;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    user-select: text;
+  }
+  .channel-info span {
+    display: block;
+    margin-bottom: 4px;
+  }
+  .price {
+    color: #1abc9c;
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 18px;
+    text-align: center;
+    user-select: text;
+  }
+  .tags {
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tag {
+    background: #16a085;
+    color: white;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 12px;
+    user-select: none;
+    text-transform: capitalize;
+  }
+  .tag.non-monetized {
+    background: #e74c3c;
+  }
+  .tag.new {
+    background: #2980b9;
+  }
+  .btn-group {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+  }
+  button, a.button-link {
+    flex: 1;
+    font-weight: 600;
+    padding: 12px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+    user-select: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    display: inline-block;
+  }
+  .buy-btn {
+    background-color: #1abc9c;
+    color: white;
+    border: 2px solid #16a085;
+  }
+  .buy-btn:hover,
+  .buy-btn:focus {
+    background-color: #16a085;
+    border-color: #13856e;
+    outline: none;
+  }
+  .details-btn {
+    background-color: #34495e;
+    color: white;
+    border: 2px solid #2c3e50;
+    line-height: 1.2;
+  }
+  .details-btn:hover,
+  .details-btn:focus {
+    background-color: #2c3e50;
+    border-color: #22303a;
+    outline: none;
+  }
+  /* Modal common */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1500;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.65);
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    overflow-y: auto;
+  }
+  .modal.active {
+    display: flex;
+  }
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    position: relative;
+    user-select: text;
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #888;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+  }
+  .modal-close:hover,
+  .modal-close:focus {
+    color: #1abc9c;
+    outline: none;
+  }
+  /* See More Modal content */
+  #detailsModal .modal-content h3 {
+    margin-bottom: 18px;
+    color: #2c3e50;
+    text-align: center;
+  }
+  #detailsModal .description {
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    white-space: pre-line;
+  }
+  #detailsModal .slide-container {
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  #detailsModal img.slide-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    user-select: none;
+  }
+  #detailsModal .slide-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    user-select: none;
+  }
+  #detailsModal .slide-controls button {
+    background: rgba(0,0,0,0.3);
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  #detailsModal .slide-controls button:hover,
+  #detailsModal .slide-controls button:focus {
+    background: #1abc9c;
+    outline: none;
+  }
+  #detailsModal .info-list {
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.4;
+  }
+  #detailsModal .info-list strong {
+    color: #16a085;
+  }
+  /* Buy Modal content */
+  #buyModal .modal-content h3 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    text-align: center;
+  }
+  #buyModal img.channel-image {
+    width: 140px;
+    height: 140px;
+    border-radius: 14px;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    display: block;
+    user-select: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  #buyModal .channel-name {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #1abc9c;
+    user-select: text;
+  }
+  #buyModal .channel-details {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #555;
+    user-select: text;
+    line-height: 1.5;
+  }
+  #buyModal .qr-code {
+    display: block;
+    margin: 0 auto 25px;
+    max-width: 180px;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    user-select: none;
+  }
+  #buyModal .instructions {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    user-select: text;
+  }
+  footer {
+    margin-top: auto;
+    background: #111;
+    color: #ccc;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    user-select: none;
+  }
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .footer-left h3 {
+    color: #1abc9c;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+  .footer-left p {
+    max-width: 380px;
+    line-height: 1.6;
+    color: #999;
+    user-select: none;
+  }
+  .footer-right {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-right a {
+    color: #ccc;
+    text-decoration: none;
+    font-weight: 600;
+    user-select: none;
+  }
+  .footer-right a:hover,
+  .footer-right a:focus {
+    color: #1abc9c;
+    outline: none;
+  }
+  /* Responsive */
+  @media (max-width: 650px) {
     header {
-      background-color: #1abc9c;
-      color: white;
-      padding: 15px 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    header .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-      user-select: none;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-
-    nav ul li a {
-      color: white;
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover,
-    nav ul li a:focus {
-      color: #16a085;
-      outline: none;
-    }
-
-    /* Page Title */
-    .page-title {
-      margin: 30px auto 40px;
-      text-align: center;
-      font-size: 2.4rem;
-      color: #16a085;
-    }
-
-    /* Category Section */
-    .category-section {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto 50px;
-    }
-
-    .category-section h2 {
-      color: #16a085;
-      font-size: 1.9rem;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #1abc9c;
-      padding-bottom: 6px;
-      user-select: none;
-    }
-
-    /* Channel Cards Container */
-    .channel-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 30px;
-    }
-
-    /* Channel Card */
-    .channel-card {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      padding: 20px;
-      text-align: center;
-      display: flex;
       flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease;
-      cursor: default;
-    }
-
-    .channel-card:hover {
-      transform: scale(1.04);
-    }
-
-    .channel-card img {
-      width: 110px;
-      height: 110px;
-      border-radius: 12px;
-      object-fit: cover;
-      margin-bottom: 18px;
-      user-select: none;
-    }
-
-    .channel-card h3 {
-      font-size: 1.3rem;
-      color: #2c3e50;
-      margin-bottom: 8px;
-      user-select: text;
-    }
-
-    .channel-card p {
-      color: #555;
-      margin-bottom: 5px;
-      user-select: text;
-    }
-
-    .channel-card .price {
-      color: #1abc9c;
-      font-weight: 600;
-      margin-bottom: 15px;
-      user-select: text;
-    }
-
-    /* Buttons side by side */
-    .btn-group {
-      display: flex;
       gap: 15px;
+    }
+    nav ul {
+      flex-wrap: wrap;
       justify-content: center;
-      width: 100%;
+      gap: 15px;
     }
-
-    button, a.button-link {
-      flex: 1;
-      font-weight: 600;
-      padding: 12px 0;
-      border-radius: 8px;
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-      text-decoration: none;
-      text-align: center;
-      user-select: none;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .channel-container {
+      grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+      gap: 20px;
     }
-
-    .buy-btn {
-      background-color: #1abc9c;
-      color: white;
-      border: 2px solid #16a085;
-    }
-
-    .buy-btn:hover,
-    .buy-btn:focus {
-      background-color: #16a085;
-      border-color: #13856e;
-      outline: none;
-    }
-
-    .details-btn {
-      background-color: #34495e;
-      color: white;
-      border: 2px solid #2c3e50;
-      text-decoration: none;
-      line-height: 1.2;
-      display: inline-block;
-    }
-
-    .details-btn:hover,
-    .details-btn:focus {
-      background-color: #2c3e50;
-      border-color: #22303a;
-      outline: none;
-    }
-
-    /* Modal styles */
-    .modal {
-      display: none; /* hidden by default */
-      position: fixed;
-      z-index: 1500;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
     .modal-content {
-      background: white;
-      border-radius: 12px;
-      padding: 30px;
-      max-width: 480px;
-      width: 100%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      position: relative;
+      max-width: 95%;
+      padding: 20px;
     }
-
-    .modal-content h3 {
-      margin-bottom: 15px;
-      color: #2c3e50;
-    }
-
-    .modal-content p {
-      color: #555;
-      line-height: 1.5;
-      margin-bottom: 20px;
-      user-select: text;
-    }
-
-    .modal-content img {
-      max-width: 120px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      user-select: none;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 26px;
-      font-weight: 700;
-      color: #888;
-      cursor: pointer;
-      user-select: none;
-      transition: color 0.3s ease;
-    }
-
-    .modal-close:hover,
-    .modal-close:focus {
-      color: #1abc9c;
-      outline: none;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      background: #111;
-      color: #ccc;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-
-    .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .footer-left h3 {
-      color: #1abc9c;
-      margin-bottom: 12px;
-      user-select: none;
-    }
-
-    .footer-left p span {
-      display: inline-block;
-      margin-bottom: 3px;
-      user-select: none;
-    }
-
-    .footer-right nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      user-select: none;
-    }
-
-    .footer-right nav ul li a {
-      color: #ccc;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-right nav ul li a:hover,
-    .footer-right nav ul li a:focus {
-      color: #1abc9c;
-      outline: none;
-    }
-
-    .copyright {
-      text-align: center;
-      margin-top: 20px;
-      color: #555;
-      font-size: 0.8rem;
-      user-select: none;
-    }
-
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="logo" tabindex="0">YTMarketStore</div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="channel-sell.html">Channel Sell</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<header>
+  <div class="logo">YTMarketStore</div>
+  <nav>
+    <ul>
+      <li><a href="index.html" tabindex="1">Home</a></li>
+      <li><a href="buy.html" tabindex="2">Buy Channels</a></li>
+      <li><a href="sell.html" tabindex="3">Sell Your Channel</a></li>
+      <li><a href="contact.html" tabindex="4">Contact</a></li>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <h1 class="page-title">Buy YouTube Channels</h1>
-  </main>
+<h1 class="page-title">Buy YouTube Channels</h1>
 
-  <!-- Categories and cards will be inserted before footer -->
+<div id="categories"></div>
 
-  <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <h3>YTMarketStore</h3>
-        <p>
-          <span>Your</span>
-          <span>one-stop</span>
-          <span>shop</span>
-          <span>for the best</span>
-          <span>YouTube marketing tools and resources.</span>
-        </p>
-      </div>
-      <div class="footer-right">
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="channel-sell.html">Channel Sell</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms & Conditions</a></li>
-          </ul>
-        </nav>
+<!-- See More Modal -->
+<div id="detailsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="detailsTitle" tabindex="-1">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close details modal">&times;</button>
+    <h3 id="detailsTitle"></h3>
+    <div class="slide-container">
+      <img src="" alt="Channel Image Slide" class="slide-image" />
+      <div class="slide-controls">
+        <button aria-label="Previous image" id="prevSlide">&#10094;</button>
+        <button aria-label="Next image" id="nextSlide">&#10095;</button>
       </div>
     </div>
-    <div class="copyright">
-      &copy; 2025 YTMarketStore. All rights reserved.
-    </div>
-  </footer>
-
-  <!-- BUY MODAL -->
-  <div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="buyModalTitle" tabindex="-1">
-    <div class="modal-content">
-      <span class="modal-close" id="modalCloseBtn" aria-label="Close modal" role="button" tabindex="0">&times;</span>
-      <h3 id="buyModalTitle">Buy Channel</h3>
-      <img id="modalChannelImage" src="" alt="Channel Image" />
-      <h4 id="modalChannelName"></h4>
-      <p><strong>Subscribers:</strong> <span id="modalChannelSubscribers"></span></p>
-      <p><strong>Price:</strong> ₹<span id="modalChannelPrice"></span></p>
-      <hr>
-      <h4>How to Buy</h4>
-      <p>1. Contact us at <a href="mailto:support@ytmarketstore.com">support@ytmarketstore.com</a> with the channel name.</p>
-      <p>2. Complete the payment as instructed.</p>
-      <p>3. After payment confirmation, the channel ownership will be transferred to you.</p>
-      <p>If you have any questions, feel free to reach out to our support team.</p>
+    <p class="description"></p>
+    <div class="info-list">
+      <p><strong>Subscribers:</strong> <span id="detail-subs"></span></p>
+      <p><strong>Lifetime Views:</strong> <span id="detail-views"></span></p>
+      <p><strong>Category:</strong> <span id="detail-category"></span></p>
+      <p><strong>Tags:</strong> <span id="detail-tags"></span></p>
+      <p><strong>Price:</strong> ₹<span id="detail-price"></span></p>
+      <p><strong>Status:</strong> <span id="detail-status"></span></p>
     </div>
   </div>
+</div>
 
-  <script>
-    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
+<!-- Buy Modal -->
+<div id="buyModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="buyTitle" tabindex="-1">
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Close buy modal">&times;</button>
+    <h3 id="buyTitle">Buy Channel</h3>
+    <img src="" alt="Channel Image" class="channel-image" />
+    <div class="channel-name"></div>
+    <div class="channel-details"></div>
+    <img src="" alt="Payment QR Code" class="qr-code" />
+    <p class="instructions">Scan the QR code above to pay. After payment, click the button below to continue.</p>
+    <button id="continueBtn" style="background:#1abc9c; color:#fff; border:none; padding:12px 25px; border-radius:10px; font-weight:600; cursor:pointer;">Continue</button>
+  </div>
+</div>
 
-    const categoryMap = new Map();
+<footer>
+  <div class="footer-container">
+    <div class="footer-left">
+      <h3>YTMarketStore</h3>
+      <p>Your trusted platform to buy and sell authentic YouTube channels securely and effortlessly.</p>
+    </div>
+    <div class="footer-right">
+      <a href="privacy.html" tabindex="10">Privacy Policy</a>
+      <a href="terms.html" tabindex="11">Terms of Service</a>
+      <a href="contact.html" tabindex="12">Contact</a>
+    </div>
+  </div>
+</footer>
 
-    // Modal Elements
-    const buyModal = document.getElementById('buyModal');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-    const modalChannelImage = document.getElementById('modalChannelImage');
-    const modalChannelName = document.getElementById('modalChannelName');
-    const modalChannelSubscribers = document.getElementById('modalChannelSubscribers');
-    const modalChannelPrice = document.getElementById('modalChannelPrice');
+<script>
+  // Your Google Sheet CSV URL here:
+  const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ...YOUR_SHEET_ID_HERE/pub?output=csv';
 
-    function createCategorySection(category) {
-      const container = document.createElement('div');
-      container.className = 'category-section';
+  // Utility to parse CSV to JSON
+  function csvToArray(str, delimiter = ',') {
+    const headers = str.slice(0, str.indexOf('\n')).split(delimiter);
+    const rows = str.slice(str.indexOf('\n') + 1).split('\n').filter(r => r.trim());
+    return rows.map(row => {
+      const values = row.split(delimiter);
+      return headers.reduce((obj, header, i) => {
+        obj[header.trim()] = values[i] ? values[i].trim() : '';
+        return obj;
+      }, {});
+    });
+  }
 
-      const title = document.createElement('h2');
-      title.textContent = category;
-      container.appendChild(title);
+  // Format numbers with commas
+  function formatNumber(num) {
+    return Number(num).toLocaleString();
+  }
 
-      const grid = document.createElement('div');
-      grid.className = 'channel-container';
-      container.appendChild(grid);
+  // Global vars for modal slide
+  let slideIndex = 0;
+  let currentSlideImages = [];
 
-      // Insert before footer
-      const footer = document.querySelector('footer');
-      footer.parentNode.insertBefore(container, footer);
-      categoryMap.set(category, grid);
-    }
+  // Modal elements
+  const detailsModal = document.getElementById('detailsModal');
+  const buyModal = document.getElementById('buyModal');
+  const detailsTitle = document.getElementById('detailsTitle');
+  const slideImage = detailsModal.querySelector('.slide-image');
+  const descriptionElem = detailsModal.querySelector('.description');
+  const detailSubs = document.getElementById('detail-subs');
+  const detailViews = document.getElementById('detail-views');
+  const detailCategory = document.getElementById('detail-category');
+  const detailTags = document.getElementById('detail-tags');
+  const detailPrice = document.getElementById('detail-price');
+  const detailStatus = document.getElementById('detail-status');
+  const prevSlideBtn = document.getElementById('prevSlide');
+  const nextSlideBtn = document.getElementById('nextSlide');
 
-    function createCard(channel) {
-      const card = document.createElement('div');
-      card.className = 'channel-card';
+  const buyTitle = document.getElementById('buyTitle');
+  const buyChannelImage = buyModal.querySelector('.channel-image');
+  const buyChannelName = buyModal.querySelector('.channel-name');
+  const buyChannelDetails = buyModal.querySelector('.channel-details');
+  const qrCodeImg = buyModal.querySelector('.qr-code');
+  const continueBtn = document.getElementById('continueBtn');
 
-      card.innerHTML = `
-        <img src="${channel.Image}" alt="Channel Image" />
-        <h3>${channel.Name}</h3>
-        <p>Subscribers: ${channel.Subscribers}</p>
-        <p class="price">Price: ₹${channel.Price}</p>
-        <div class="btn-group">
-          <button class="buy-btn" aria-label="Buy ${channel.Name} Channel">Buy</button>
-          <a href="${channel.Link}" target="_blank" rel="noopener" class="details-btn button-link" aria-label="See details of ${channel.Name} Channel">See Details</a>
-        </div>
-      `;
+  // Close modals
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      detailsModal.classList.remove('active');
+      buyModal.classList.remove('active');
+    });
+  });
 
-      // Buy button event
-      const buyBtn = card.querySelector('.buy-btn');
-      buyBtn.addEventListener('click', () => {
-        modalChannelImage.src = channel.Image;
-        modalChannelImage.alt = `Image of ${channel.Name} Channel`;
-        modalChannelName.textContent = channel.Name;
-        modalChannelSubscribers.textContent = channel.Subscribers;
-        modalChannelPrice.textContent = channel.Price;
+  // Close modals on outside click
+  [detailsModal, buyModal].forEach(modal => {
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+  });
 
-        buyModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        buyModal.focus();
+  // Slide controls
+  prevSlideBtn.addEventListener('click', () => {
+    slideIndex = (slideIndex - 1 + currentSlideImages.length) % currentSlideImages.length;
+    slideImage.src = currentSlideImages[slideIndex];
+  });
+  nextSlideBtn.addEventListener('click', () => {
+    slideIndex = (slideIndex + 1) % currentSlideImages.length;
+    slideImage.src = currentSlideImages[slideIndex];
+  });
+
+  // Continue button redirects to delivery page
+  continueBtn.addEventListener('click', () => {
+    window.location.href = 'delivery.html';
+  });
+
+  // Load and render data
+  async function loadChannels() {
+    try {
+      const res = await fetch(sheetUrl);
+      const text = await res.text();
+      const data = csvToArray(text);
+
+      // Group by category
+      const grouped = data.reduce((acc, channel) => {
+        const cat = channel.category || 'Others';
+        if (!acc[cat]) acc[cat] = [];
+        acc[cat].push(channel);
+        return acc;
+      }, {});
+
+      const categoriesDiv = document.getElementById('categories');
+      categoriesDiv.innerHTML = '';
+
+      Object.entries(grouped).forEach(([category, channels]) => {
+        const section = document.createElement('section');
+        section.className = 'category-section';
+
+        const heading = document.createElement('h2');
+        heading.textContent = category;
+        section.appendChild(heading);
+
+        const container = document.createElement('div');
+        container.className = 'channel-container';
+
+        channels.forEach(channel => {
+          // Card creation
+          const card = document.createElement('div');
+          card.className = 'channel-card';
+
+          // Channel image
+          const img = document.createElement('img');
+          img.src = channel.image1 || channel.image || '';
+          img.alt = channel.name + ' Channel Image';
+          card.appendChild(img);
+
+          // Channel name
+          const name = document.createElement('h3');
+          name.textContent = channel.name || 'Unnamed Channel';
+          card.appendChild(name);
+
+          // Subscribers and lifetime views
+          const subs = document.createElement('div');
+          subs.className = 'channel-info';
+          subs.innerHTML = `<span><strong>Subscribers:</strong> ${formatNumber(channel.subscribers || 0)}</span><span><strong>Lifetime Views:</strong> ${formatNumber(channel.lifetime_views || 0)}</span>`;
+          card.appendChild(subs);
+
+          // Price
+          const price = document.createElement('div');
+          price.className = 'price';
+          price.textContent = channel.price ? `₹${formatNumber(channel.price)}` : 'Price not available';
+          card.appendChild(price);
+
+          // Tags
+          const tagsDiv = document.createElement('div');
+          tagsDiv.className = 'tags';
+          if(channel.tags){
+            channel.tags.split(',').map(t => t.trim()).forEach(tag => {
+              const tagSpan = document.createElement('span');
+              tagSpan.className = 'tag';
+              if(tag.toLowerCase() === 'non-monetized') tagSpan.classList.add('non-monetized');
+              else if(tag.toLowerCase() === 'new') tagSpan.classList.add('new');
+              tagSpan.textContent = tag;
+              tagsDiv.appendChild(tagSpan);
+            });
+          }
+          card.appendChild(tagsDiv);
+
+          // Buttons group
+          const btnGroup = document.createElement('div');
+          btnGroup.className = 'btn-group';
+
+          // See More button
+          const detailsBtn = document.createElement('button');
+          detailsBtn.className = 'details-btn';
+          detailsBtn.textContent = 'See More';
+          detailsBtn.addEventListener('click', () => openDetailsModal(channel));
+          btnGroup.appendChild(detailsBtn);
+
+          // Buy/Sold button
+          const buyBtn = document.createElement('button');
+          buyBtn.className = 'buy-btn';
+          buyBtn.textContent = (channel.status && channel.status.toLowerCase() === 'sold') ? 'Sold' : 'Buy';
+          buyBtn.disabled = (channel.status && channel.status.toLowerCase() === 'sold');
+          buyBtn.addEventListener('click', () => {
+            if(!buyBtn.disabled){
+              openBuyModal(channel);
+            }
+          });
+          btnGroup.appendChild(buyBtn);
+
+          card.appendChild(btnGroup);
+
+          container.appendChild(card);
+        });
+
+        section.appendChild(container);
+        categoriesDiv.appendChild(section);
       });
 
-      return card;
+    } catch (error) {
+      console.error('Error loading sheet data:', error);
+      document.getElementById('categories').textContent = 'Failed to load channel data.';
+    }
+  }
+
+  // Open See More modal
+  function openDetailsModal(channel){
+    detailsTitle.textContent = channel.name || 'Unnamed Channel';
+    descriptionElem.textContent = channel.description || 'No description available.';
+    detailSubs.textContent = formatNumber(channel.subscribers || 0);
+    detailViews.textContent = formatNumber(channel.lifetime_views || 0);
+    detailCategory.textContent = channel.category || 'N/A';
+    detailTags.textContent = channel.tags || 'None';
+    detailPrice.textContent = formatNumber(channel.price || 0);
+    detailStatus.textContent = channel.status || 'Available';
+
+    // Prepare slide images
+    currentSlideImages = [];
+    if(channel.image1) currentSlideImages.push(channel.image1);
+    if(channel.image2) currentSlideImages.push(channel.image2);
+    if(channel.image3) currentSlideImages.push(channel.image3);
+
+    // If no images, fallback to image1 or empty placeholder
+    if(currentSlideImages.length === 0){
+      currentSlideImages.push(channel.image1 || 'https://via.placeholder.com/450x280?text=No+Image');
     }
 
-    function init() {
-      fetch(sheetURL)
-        .then(res => res.text())
-        .then(csvText => {
-          const rows = csvText.trim().split('\n').map(row => row.split(','));
-          const headers = rows[0];
-          const data = rows.slice(1).map(row => {
-            const obj = {};
-            headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
-            return obj;
-          });
+    slideIndex = 0;
+    slideImage.src = currentSlideImages[slideIndex];
+    detailsModal.classList.add('active');
+    detailsModal.focus();
+  }
 
-          data.forEach(channel => {
-            const category = channel.Category || 'Uncategorized';
-            if (!categoryMap.has(category)) {
-              createCategorySection(category);
-            }
-            const container = categoryMap.get(category);
-            const card = createCard(channel);
-            container.appendChild(card);
-          });
-        });
-    }
+  // Open Buy modal
+  function openBuyModal(channel){
+    buyTitle.textContent = `Buy Channel: ${channel.name || 'Unnamed'}`;
+    buyChannelImage.src = channel.image1 || channel.image || 'https://via.placeholder.com/140?text=No+Image';
+    buyChannelImage.alt = channel.name + ' Channel Image';
+    buyChannelName.textContent = channel.name || 'Unnamed Channel';
+    buyChannelDetails.innerHTML = `
+      <p><strong>Subscribers:</strong> ${formatNumber(channel.subscribers || 0)}</p>
+      <p><strong>Lifetime Views:</strong> ${formatNumber(channel.lifetime_views || 0)}</p>
+      <p><strong>Category:</strong> ${channel.category || 'N/A'}</p>
+      <p><strong>Price:</strong> ₹${formatNumber(channel.price || 0)}</p>
+      <p><strong>Status:</strong> ${channel.status || 'Available'}</p>
+    `;
+    qrCodeImg.src = channel.payment_qr || 'https://via.placeholder.com/180?text=No+QR';
+    qrCodeImg.alt = 'Payment QR Code';
 
-    // Close modal on clicking close icon or outside modal content
-    modalCloseBtn.addEventListener('click', () => {
-      buyModal.classList.remove('active');
-      document.body.style.overflow = '';
+    buyModal.classList.add('active');
+    buyModal.focus();
+  }
+
+  // Initialize
+  loadChannels();
+</script>
+
+</body>
+</html>
