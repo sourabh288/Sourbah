@@ -5,52 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Buy YouTube Channels - YTMarketStore</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0; padding: 0;
-  }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f9fafb;
-    color: #333;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  header {
-    background-color: #1abc9c;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  header .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    user-select: none;
-  }
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-  }
-  nav ul li a {
-    color: white;
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  nav ul li a:hover,
-  nav ul li a:focus {
-    color: #16a085;
-    outline: none;
-  }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f9fafb;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-radius: 0 0 12px 12px;
+      opacity: 0;
+      transform: translateY(-40px);
+      animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes headerEnter {
+      0% { opacity: 0; transform: translateY(-40px); }
+      70% { opacity: 1; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      user-select: none;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
+      transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
+    }
+
+    .logo:hover {
+      color: #1abc9c;
+      transform: scale(1.15);
+      text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+    }
+
+    nav ul li a {
+      color: #34495e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #1abc9c;
+      border-radius: 3px;
+      transform: translateX(-50%);
+      transition: width 0.35s, left 0.35s;
+    }
+
+    nav ul li a:hover::before {
+      width: 100%;
+      left: 0;
+      transform: none;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+    }
   .page-title {
     margin: 30px auto 40px;
     text-align: center;
@@ -455,23 +504,40 @@
   </div>
 </div>
 
-<footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <h3>YTMarketStore</h3>
-      <p>Your trusted platform to buy and sell authentic YouTube channels securely and effortlessly.</p>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YTMarketStore</h3>
+        <p>
+          <span>Your</span>
+          <span>one-stop</span>
+          <span>shop</span>
+          <span>for the best</span>
+          <span>YouTube marketing tools and resources.</span>
+        </p>
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="channel-sell.html">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
-    <div class="footer-right">
-      <a href="privacy.html" tabindex="10">Privacy Policy</a>
-      <a href="terms.html" tabindex="11">Terms of Service</a>
-      <a href="contact.html" tabindex="12">Contact</a>
+    <div class="copyright">
+      &copy; 2025 YTMarketStore. All rights reserved.
     </div>
-  </div>
-</footer>
+  </footer>
 
 <script>
   // Your Google Sheet CSV URL here:
-  const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ...YOUR_SHEET_ID_HERE/pub?output=csv';
+  const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
 
   // Utility to parse CSV to JSON
   function csvToArray(str, delimiter = ',') {
