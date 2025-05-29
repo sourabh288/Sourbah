@@ -9,280 +9,201 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
-    }body {
-  background-color: #f9fafb;
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 50px;
-  background-color: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-radius: 0 0 12px 12px;
-  opacity: 0;
-  transform: translateY(-40px);
-  animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes headerEnter {
-  0% { opacity: 0; transform: translateY(-40px); }
-  70% { opacity: 1; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.logo {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #2c3e50;
-  user-select: none;
-  cursor: pointer;
-  letter-spacing: 1.5px;
-  text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
-  transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
-}
-
-.logo:hover {
-  color: #1abc9c;
-  transform: scale(1.15);
-  text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 35px;
-}
-
-nav ul li a {
-  color: #34495e;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1.1rem;
-  padding-bottom: 5px;
-  border-bottom: 2.5px solid transparent;
-  cursor: pointer;
-  position: relative;
-  transition: color 0.3s;
-}
-
-nav ul li a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 3px;
-  background: #1abc9c;
-  border-radius: 3px;
-  transform: translateX(-50%);
-  transition: width 0.35s, left 0.35s;
-}
-
-nav ul li a:hover::before {
-  width: 100%;
-  left: 0;
-  transform: none;
-}
-
-nav ul li a:hover {
-  color: #1abc9c;
-}
-
-.page-title {
-  text-align: center;
-  margin: 60px 0 30px;
-  font-size: 2.5rem;
-  color: #2c3e50;
-}
-
-.channel-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px 50px 80px;
-}
-
-.category-section {
-  padding: 0 50px;
-}
-
-footer {
-  background: #121212;
-  color: #ccc;
-  padding: 40px 50px;
-  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
-  margin-top: auto;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 20px;
-}
-
-.footer-left h3 {
-  font-size: 1.8rem;
-  margin-bottom: 10px;
-  color: #1abc9c;
-}
-
-.footer-left p {
-  max-width: 320px;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.footer-right nav ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  padding: 0;
-  margin-bottom: 15px;
-}
-
-.footer-right nav ul li a {
-  color: #ccc;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.footer-right nav ul li a:hover {
-  color: #1abc9c;
-  text-decoration: underline;
-}
-
-.copyright {
-  font-size: 0.9rem;
-  color: #777;
-  text-align: center;
-  margin-top: 20px;
-  width: 100%;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 2000;
-}
-
-.modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 12px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  position: relative;
-}
-
-.modal-content h2 {
-  margin-bottom: 15px;
-  color: #2c3e50;
-}
-
-.modal-content img {
-  width: 200px;
-  margin: 20px 0;
-}
-
-.modal-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #1abc9c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
+    }
+    body {
+      background-color: #f9fafb;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-radius: 0 0 12px 12px;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+    }
+    nav ul li a {
+      color: #34495e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .page-title {
+      text-align: center;
+      margin: 60px 0 30px;
+      font-size: 2.5rem;
+      color: #2c3e50;
+    }
+    .channel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 20px 50px 80px;
+    }
+    .category-section {
+      padding: 0 50px;
+    }
+    .tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1abc9c;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+    .carousel img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+    footer {
+      background: #121212;
+      color: #ccc;
+      padding: 40px 50px;
+      margin-top: auto;
+    }
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-left h3 {
+      color: #1abc9c;
+    }
+    .footer-right nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .footer-right nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+    }
   </style>
 </head>
-<body><header>
-  <div class="logo" tabindex="0">YTMarketStore</div>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="channel-sell.html">Channel Sell</a></li>
-      <li><a href="about.html">About Us</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
-</header><h1 class="page-title">Buy YouTube Channels</h1>
-<div id="channel-sections"></div><div class="modal" id="buyModal">
-  <div class="modal-content">
-    <h2 id="modalChannelName"></h2>
-    <img id="modalQR" src="" alt="QR Code">
-    <p id="modalAmount"></p>
-    <button onclick="window.location.href='delivery.html'">Continue</button>
-  </div>
-</div><footer>
-  <div class="footer-container">
-    <div class="footer-left">
-      <h3>YTMarketStore</h3>
-      <p>Your one-stop shop for the best YouTube marketing tools and resources.</p>
+<body>
+  <header>
+    <div class="logo">YTMarketStore</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="channel-sell.html">Channel Sell</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1 class="page-title">Buy YouTube Channels</h1>
+  <div id="content"></div>
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YTMarketStore</h3>
+        <p>Your one-stop shop for the best YouTube marketing tools and resources.</p>
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="channel-sell.html">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
-    <div class="footer-right">
-      <nav>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="channel-sell.html">Channel Sell</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="privacy-policy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms & Conditions</a></li>
-        </ul>
-      </nav>
+  </footer>
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <div class="carousel" id="carouselImages"></div>
+      <p id="modalDescription"></p>
+      <div id="modalStats"></div>
+      <div style="text-align: center; margin-top: 15px;">
+        <img id="qrImage" src="" alt="Payment QR" style="width: 200px; height: 200px; display:block; margin: 0 auto;" />
+        <p id="priceText"></p>
+        <button onclick="redirectToDelivery()" style="margin-top: 10px; background: #1abc9c; color: white; padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;">Continue</button>
+      </div>
     </div>
   </div>
-  <div class="copyright">
-    &copy; 2025 YTMarketStore. All rights reserved.
-  </div>
-</footer><script>
-const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
-const categoryMap = new Map();
-
-function createCategorySection(category) {
-  const section = document.createElement('div');
-  section.className = 'category-section';
+  <script>
+    const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
+    const categoryMap = new Map();
+    const modal = document.getElementById("popupModal");function createCategorySection(category) {
+  const container = document.createElement('div');
+  container.className = 'category-section';
   const title = document.createElement('h2');
   title.textContent = category;
   title.style.color = '#1abc9c';
-  title.style.margin = '30px 0 10px';
-  section.appendChild(title);
+  title.style.margin = '40px 0 10px';
   const hr = document.createElement('hr');
-  section.appendChild(hr);
-  const container = document.createElement('div');
-  container.className = 'channel-container';
-  section.appendChild(container);
-  document.getElementById('channel-sections').appendChild(section);
-  categoryMap.set(category, container);
+  container.appendChild(title);
+  container.appendChild(hr);
+  const grid = document.createElement('div');
+  grid.className = 'channel-container';
+  container.appendChild(grid);
+  document.getElementById("content").appendChild(container);
+  categoryMap.set(category, grid);
 }
 
 function createCard(channel) {
   const card = document.createElement('div');
+  card.style.position = 'relative';
   card.style.background = '#fff';
   card.style.borderRadius = '16px';
   card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
@@ -291,31 +212,49 @@ function createCard(channel) {
   card.style.flexDirection = 'column';
   card.style.alignItems = 'center';
   card.style.textAlign = 'center';
-  card.style.transition = 'transform 0.3s';
-  card.onmouseover = () => card.style.transform = 'scale(1.03)';
-  card.onmouseout = () => card.style.transform = 'scale(1)';
 
-  card.innerHTML = `
-    <img src="${channel.Image}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
+  const tag = document.createElement('div');
+  tag.className = 'tag';
+  tag.textContent = channel.Tags || 'Available';
+  card.appendChild(tag);
+
+  card.innerHTML += `
+    <img src="${channel.Image1}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
     <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
     <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
+    <p style="color: #777;">Lifetime Views: ${channel.LifetimeViews}</p>
+    <p style="color: #777;">Monetized: ${channel.Monetized}</p>
     <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
-    <button style="margin-top: 10px; padding: 8px 16px; background-color: #1abc9c; color: white; border: none; border-radius: 8px; cursor: pointer;" onclick="openBuyModal('${channel.Name}', '${channel.QR}', '${channel.Price}')">Buy</button>
+    <button onclick='openModal(${JSON.stringify(channel)})' style="margin-top: 10px; background: #1abc9c; color: white; padding: 8px 16px; border-radius: 8px; border: none; cursor: pointer;">See More</button>
   `;
   return card;
 }
 
-function openBuyModal(name, qr, amount) {
-  document.getElementById('modalChannelName').textContent = name;
-  document.getElementById('modalQR').src = qr;
-  document.getElementById('modalAmount').textContent = `Pay ₹${amount} using the QR code above.`;
-  document.getElementById('buyModal').style.display = 'flex';
+function openModal(channel) {
+  modal.style.display = 'flex';
+  document.getElementById('carouselImages').innerHTML = `
+    <img src="${channel.Image1}" />
+    <img src="${channel.Image2}" />
+    <img src="${channel.Image3}" />
+  `;
+  document.getElementById('modalDescription').textContent = channel.Description || 'No description';
+  document.getElementById('modalStats').innerHTML = `
+    <p>Subscribers: ${channel.Subscribers}</p>
+    <p>Lifetime Views: ${channel.LifetimeViews}</p>
+    <p>Monetized: ${channel.Monetized}</p>
+    <p>Status: ${channel.Tags}</p>
+  `;
+  document.getElementById('qrImage').src = channel.PaymentQR;
+  document.getElementById('priceText').textContent = `Pay ₹${channel.Price} to buy ${channel.Name}`;
 }
 
-window.addEventListener('click', function(e) {
-  const modal = document.getElementById('buyModal');
-  if (e.target === modal) modal.style.display = 'none';
-});
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function redirectToDelivery() {
+  window.location.href = 'delivery.html';
+}
 
 function init() {
   fetch(sheetURL)
@@ -328,16 +267,17 @@ function init() {
         headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
         return obj;
       });
-
       data.forEach(channel => {
         const category = channel.Category || 'Uncategorized';
         if (!categoryMap.has(category)) createCategorySection(category);
         const container = categoryMap.get(category);
-        container.appendChild(createCard(channel));
+        const card = createCard(channel);
+        container.appendChild(card);
       });
     });
 }
-
 window.addEventListener('DOMContentLoaded', init);
-</script></body>
+
+  </script>
+</body>
 </html>
