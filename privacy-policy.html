@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YTMarketStore - Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f9fafb;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-radius: 0 0 12px 12px;
+      opacity: 0;
+      transform: translateY(-40px);
+      animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    @keyframes headerEnter {
+      0% { opacity: 0; transform: translateY(-40px); }
+      70% { opacity: 1; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2c3e50;
+      user-select: none;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
+      transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
+    }
+
+    .logo:hover {
+      color: #1abc9c;
+      transform: scale(1.15);
+      text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 35px;
+    }
+
+    nav ul li a {
+      color: #34495e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 2.5px solid transparent;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav ul li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: #1abc9c;
+      border-radius: 3px;
+      transform: translateX(-50%);
+      transition: width 0.35s, left 0.35s;
+    }
+
+    nav ul li a:hover::before {
+      width: 100%;
+      left: 0;
+      transform: none;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+    }
+
+    /* Privacy Policy Section */
+    .privacy-policy {
+      max-width: 900px;
+      background: #fff;
+      margin: 80px auto 60px;
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(26, 188, 156, 0.15);
+      color: #2c3e50;
+      line-height: 1.7;
+    }
+
+    .privacy-policy h1 {
+      color: #16a085;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      text-align: center;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+    }
+
+    .privacy-policy h2 {
+      color: #1abc9c;
+      margin-top: 30px;
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      border-left: 6px solid #16a085;
+      padding-left: 12px;
+    }
+
+    .privacy-policy p {
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+    }
+
+    .privacy-policy ul {
+      margin-left: 20px;
+      margin-bottom: 18px;
+      list-style-type: disc;
+    }
+
+    .privacy-policy ul li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      background: #121212;
+      color: #ccc;
+      padding: 40px 50px;
+      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .footer-left h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #1abc9c;
+    }
+
+    .footer-left p {
+      max-width: 320px;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .footer-right nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+
+    .footer-right nav ul li a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .footer-right nav ul li a:hover {
+      color: #1abc9c;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    @media (max-width: 700px) {
+      .footer-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .footer-left p {
+        margin: 0 auto 20px auto;
+      }
+      .footer-right nav ul {
+        justify-content: center;
+      }
+
+      .privacy-policy {
+        margin: 40px 20px;
+        padding: 30px 20px;
+      }
+
+      .privacy-policy h1 {
+        font-size: 2rem;
+      }
+
+      .privacy-policy h2 {
+        font-size: 1.4rem;
+      }
+
+      .privacy-policy p, .privacy-policy ul li {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" tabindex="0">YTMarketStore</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="channel-sell.html">Channel Sell</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="privacy-policy">
+    <h1>Privacy Policy</h1>
+    <p>At YTMarketStore, your privacy is of utmost importance to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our website.</p>
+
+    <h2>Information We Collect</h2>
+    <p>We may collect the following types of information:</p>
+    <ul>
+      <li><strong>Personal Identification Information:</strong> Name, email address, phone number, etc.</li>
+      <li><strong>Usage Data:</strong> Pages visited, time spent on site, browser type, and other analytical data.</li>
+      <li><strong>Cookies and Tracking Technologies:</strong> To enhance your experience and gather usage information.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <p>Your information is used to:</p>
+    <ul>
+      <li>Provide, maintain, and improve our services.</li>
+      <li>Respond to inquiries and provide customer support.</li>
+      <li>Send you updates, promotional materials, and important notifications.</li>
+      <li>Analyze site usage to enhance user experience.</li>
+    </ul>
+
+    <h2>Data Security</h2>
+    <p>We implement appropriate security measures to safeguard your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+
+    <h2>Your Rights</h2>
+    <p>You have the right to access, update, or delete your personal information. If you wish to exercise these rights, please contact us at <a href="mailto:ytmarket.store@gmail.com">ytmarket.store@gmail.com</a>.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>We may use third-party service providers for analytics, advertising, and other services. These providers have their own privacy policies, and we encourage you to review them.</p>
+
+    <h2>Changes to This Policy</h2>
+    <p>We reserve the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated revision date.</p>
+
+    <h2>Contact Us</h2>
+    <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:ytmarket.store.com">ytmarket.store@gmail.com</a>.</p>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YTMarketStore</h3>
+        <p>
+          Your one-stop shop for the best YouTube marketing tools and resources.
+        </p>
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="channel-sell.html">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="privacy-policy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 YTMarketStore. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sell Your Channel - YTMarketStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 20px 50px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 2rem;
+      color: #1abc9c;
+      cursor: pointer;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 2px #0e6551;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+      border-bottom-color: #1abc9c;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 60px auto 80px;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #16a085;
+      margin-bottom: 30px;
+    }
+
+    form label {
+      display: block;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 6px;
+      color: #2c3e50;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    form input:focus, form select:focus {
+      outline: none;
+      border-color: #1abc9c;
+      box-shadow: 0 0 5px rgba(26, 188, 156, 0.5);
+    }
+
+    .submit-btn {
+      margin-top: 30px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      display: block;
+      width: 100%;
+    }
+
+    .submit-btn:hover {
+      background-color: #16a085;
+    }
+
+    footer {
+      background: #121212;
+      color: #ccc;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.95rem;
+      margin-top: auto;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.6);
+    }
+
+    footer span {
+      color: #1abc9c;
+      font-weight: 600;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 700px) {
+      main {
+        margin: 40px 15px 60px;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">YTMarketStore</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="channel-sell.html" aria-current="page">Channel Sell</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Sell Your YouTube Channel</h1>
+    <form id="sellForm" onsubmit="redirectToTelegram(event)">
+      <label for="channelName">Channel Name</label>
+      <input type="text" id="channelName" name="channelName" required />
+
+      <label for="channelLink">Channel Link</label>
+      <input type="url" id="channelLink" name="channelLink" required />
+
+      <label for="subscribers">Subscribers</label>
+      <input type="number" id="subscribers" name="subscribers" required />
+
+      <label for="monthlyViews">Monthly Views</label>
+      <input type="number" id="monthlyViews" name="monthlyViews" required />
+
+      <label for="monetized">Channel Monetized</label>
+      <select id="monetized" name="monetized" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <label for="price">Expected Price (INR)</label>
+      <input type="number" id="price" name="price" required />
+
+      <label for="captcha">What is 4 + 3?</label>
+      <input type="number" id="captcha" required />
+      <div id="captchaError" class="error" style="display:none;">Incorrect answer. Please try again.</div>
+
+      <button type="submit" class="submit-btn">Submit on Telegram</button>
+    </form>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YTMarketStore</h3>
+        <p>Your trusted partner for selling YouTube channels and digital assets securely and easily.</p>
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://t.me/ytmarket.sell?subscribe=1000&monthlyview=50000&monetize=yes" target="_blank" rel="noopener noreferrer">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="copyright">
+          &copy; 2025 YTMarketStore. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function redirectToTelegram(event) {
+      event.preventDefault();
+
+      const captchaAnswer = document.getElementById('captcha').value;
+      const captchaError = document.getElementById('captchaError');
+
+      if (parseInt(captchaAnswer) !== 7) {
+        captchaError.style.display = 'block';
+        return;
+      } else {
+        captchaError.style.display = 'none';
+      }
+
+      const name = document.getElementById('channelName').value;
+      const link = document.getElementById('channelLink').value;
+      const subs = document.getElementById('subscribers').value;
+      const views = document.getElementById('monthlyViews').value;
+      const monetized = document.getElementById('monetized').value;
+      const price = document.getElementById('price').value;
+
+      const message = `Hello, I want to sell my YouTube channel.\n\nChannel Name: ${name}\nChannel Link: ${link}\nSubscribers: ${subs}\nMonthly Views: ${views}\nMonetized: ${monetized}\nExpected Price: ₹${price}`;
+
+      const encodedMsg = encodeURIComponent(message);
+      const telegramURL = `https://t.me/ytmarket_sell?start&text=${encodedMsg}`;
+      window.open(telegramURL, '_blank');
+    }
+  </script>
+
+</body>
+</html>

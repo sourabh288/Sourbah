@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - YTMarketStore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background-color: #fff;
+      padding: 20px 50px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 600;
+      font-size: 2rem;
+      color: #1abc9c;
+      cursor: pointer;
+      user-select: none;
+      letter-spacing: 1.5px;
+      text-shadow: 1px 1px 2px #0e6551;
+      transition: color 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #16a085;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #34495e;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding-bottom: 5px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: #1abc9c;
+      border-bottom-color: #1abc9c;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 900px;
+      margin: 60px auto 80px;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    /* Circular logo */
+    .about-logo {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 25px;
+      box-shadow: 0 8px 20px rgba(26, 188, 156, 0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .about-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-logo:hover {
+      transform: scale(1.1);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #16a085;
+      margin-bottom: 15px;
+      letter-spacing: 1.2px;
+      text-shadow: 1px 1px 3px #0e6551;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 35px 0 20px;
+      color: #2c3e50;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto 25px;
+      color: #555;
+      letter-spacing: 0.02em;
+    }
+
+    /* Founder Section */
+    .founder-section {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 2px solid #1abc9c;
+    }
+
+    .founder-section h3 {
+      font-size: 1.7rem;
+      color: #16a085;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px #0e6551;
+    }
+
+    .founder-section p {
+      font-size: 1.1rem;
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* Footer */
+    footer {
+      background: #121212;
+      color: #ccc;
+      text-align: center;
+      padding: 25px 10px;
+      font-size: 0.95rem;
+      user-select: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.6);
+      margin-top: auto;
+    }
+
+    footer span {
+      color: #1abc9c;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      main {
+        margin: 40px 15px 60px;
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      nav ul {
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" tabindex="0">YTMarketStore</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="https://t.me/ytmarket.sell?subscribe=1000&monthlyview=50000&monetize=yes" target="_blank" rel="noopener noreferrer">Channel Sell</a></li>
+        <li><a href="about.html" aria-current="page">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="about-logo" aria-label="YTMarketStore Logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiaDcraQMrN-0ivZaAF0l0ROqfFEwu111jDZWgY_3k_-D21CK37sXdAe7kQyZzWzOnGQF_g4dw4TyuOS-XjLAVI32X5vOtiUkVBIX-8w_JAFC8KPjY4s4ch3mCwRHjrivrROCCtqd013NbRPplWSoxGQOkIw_beePlPddFyYIgRPhY8JmF3jSA6NYL_TjFk/s800/1000103221.jpg" alt="YTMarketStore Logo" />
+    </div>
+
+    <h1>About YTMarketStore</h1>
+    <p>
+      YTMarketStore is India's leading platform dedicated to buying and selling YouTube channels securely and efficiently. 
+      Our platform ensures a seamless experience where creators and entrepreneurs can trade digital assets with full confidence.
+    </p>
+    <p>
+      Unlike traditional marketplaces, we facilitate <strong>direct channel transfers</strong> securely through our website. 
+      This means <strong>no brokers, no middlemen</strong>, and no hidden fees. You can easily sell or buy your YouTube channel directly on our platform without any hassle.
+    </p>
+    <p>
+      Our mission is to empower creators to monetize their work and grow their digital presence with complete peace of mind. 
+      We continuously invest in security features and customer support to make YTMarketStore the most trustworthy marketplace in this niche.
+    </p>
+
+    <h2>Why Choose Us?</h2>
+    <p>
+      - Verified sellers and buyers with a comprehensive channel database.<br />
+      - Safe and direct channel transfers without involving brokers.<br />
+      - Transparent pricing with no hidden costs.<br />
+      - 24/7 dedicated customer support.<br />
+      - Expert guidance to help you make informed decisions.
+    </p>
+
+    <div class="founder-section" role="region" aria-labelledby="founder-heading">
+      <h2 id="founder-heading">Founder & CEO</h2>
+      <h3>Sourabh Chahar</h3>
+      <p>Founder of YTMarketStore, passionate about empowering digital creators and fostering a safe marketplace for channel trading.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h3>YTMarketStore</h3>
+        <p>Your trusted partner for selling YouTube channels and digital assets securely and easily.</p>
+      </div>
+      <div class="footer-right">
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://t.me/ytmarket.sell?subscribe=1000&monthlyview=50000&monetize=yes" target="_blank" rel="noopener noreferrer">Channel Sell</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </nav>
+        <div class="copyright">
+          &copy; 2025 YTMarketStore. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
