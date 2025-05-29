@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <title>Buy YouTube Channels - YTMarketStore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Core Layout */
     * {
       margin: 0;
       padding: 0;
@@ -13,293 +14,206 @@
     }
 
     body {
-      background-color: #f9fafb;
+      background-color: #f4f6f8;
       color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    header, footer {
+      background: white;
       padding: 20px 50px;
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-radius: 0 0 12px 12px;
-      opacity: 0;
-      transform: translateY(-40px);
-      animation: headerEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    @keyframes headerEnter {
-      0% { opacity: 0; transform: translateY(-40px); }
-      70% { opacity: 1; transform: translateY(10px); }
-      100% { opacity: 1; transform: translateY(0); }
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
     .logo {
       font-size: 2rem;
       font-weight: 600;
-      color: #2c3e50;
-      user-select: none;
-      cursor: pointer;
-      letter-spacing: 1.5px;
-      text-shadow: 1px 1px 0 #1a2a3a, 2px 2px 0 #1a2a3a;
-      transition: transform 0.35s, color 0.35s, text-shadow 0.35s;
-    }
-
-    .logo:hover {
-      color: #1abc9c;
-      transform: scale(1.15);
-      text-shadow: 2px 2px 0 #159a83, 4px 4px 0 #0e6551;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 35px;
+      gap: 30px;
     }
 
     nav ul li a {
-      color: #34495e;
       text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding-bottom: 5px;
-      border-bottom: 2.5px solid transparent;
-      cursor: pointer;
-      position: relative;
-      transition: color 0.3s;
-    }
-
-    nav ul li a::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: #1abc9c;
-      border-radius: 3px;
-      transform: translateX(-50%);
-      transition: width 0.35s, left 0.35s;
-    }
-
-    nav ul li a:hover::before {
-      width: 100%;
-      left: 0;
-      transform: none;
-    }
-
-    nav ul li a:hover {
-      color: #1abc9c;
+      color: #2c3e50;
+      font-weight: 500;
     }
 
     .page-title {
       text-align: center;
-      margin: 60px 0 30px;
-      font-size: 2.5rem;
-      color: #2c3e50;
+      margin: 40px 0 20px;
+      font-size: 2rem;
+      color: #222;
     }
 
-    .channel-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      padding: 20px 50px 80px;
+    .channel-category {
+      margin: 30px 50px;
     }
 
-    .category-section {
-      padding: 0 50px;
+    .channel-category hr {
+      border: none;
+      border-top: 3px solid #1abc9c;
+      margin-bottom: 20px;
     }
 
-    footer {
-      background: #121212;
-      color: #ccc;
-      padding: 40px 50px;
-      box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
-      margin-top: auto;
-    }
-
-    .footer-container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 20px;
-    }
-
-    .footer-left h3 {
-      font-size: 1.8rem;
+    .channel-category h2 {
       margin-bottom: 10px;
       color: #1abc9c;
     }
 
-    .footer-left p {
-      max-width: 320px;
-      font-size: 1rem;
-      line-height: 1.5;
+    .channel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
     }
 
-    .footer-right nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      padding: 0;
-      margin-bottom: 15px;
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      padding: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .footer-right nav ul li a {
-      color: #ccc;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 1rem;
-      transition: color 0.3s ease;
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     }
 
-    .footer-right nav ul li a:hover {
-      color: #1abc9c;
-      text-decoration: underline;
-    }
-
-    .copyright {
-      font-size: 0.9rem;
-      color: #777;
-      text-align: center;
-      margin-top: 20px;
+    .card img {
       width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin: 5px 0;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .card .stats {
+      margin: 8px 0;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .card .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .card .buttons a {
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .buy-btn {
+      background-color: #1abc9c;
+      color: white;
+    }
+
+    .buy-btn:hover {
+      background-color: #159a83;
+    }
+
+    .details-btn {
+      background-color: #eee;
+      color: #333;
+    }
+
+    .details-btn:hover {
+      background-color: #ccc;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo" tabindex="0">YTMarketStore</div>
+    <div class="logo">YTMarketStore</div>
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="channel-sell.html">Channel Sell</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
   <h1 class="page-title">Buy YouTube Channels</h1>
-
-  <!-- Channel sections will be generated here -->
+  <div id="channelContainer"></div>
 
   <footer>
-    <div class="footer-container">
-      <div class="footer-left">
-        <h3>YTMarketStore</h3>
-        <p>
-          <span>Your</span>
-          <span>one-stop</span>
-          <span>shop</span>
-          <span>for the best</span>
-          <span>YouTube marketing tools and resources.</span>
-        </p>
-      </div>
-      <div class="footer-right">
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="channel-sell.html">Channel Sell</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="terms.html">Terms & Conditions</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <div class="copyright">
-      &copy; 2025 YTMarketStore. All rights reserved.
-    </div>
+    &copy; 2025 YTMarketStore. All rights reserved.
   </footer>
 
-  <!-- DATA FETCH & CARD GENERATION -->
+  <!-- Tabletop JS -->
+  <script src="https://cdn.jsdelivr.net/npm/tabletop@1.5.1/tabletop.min.js"></script>
+
   <script>
     const sheetURL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTz_ndIQCerGo41xOhuFIxK7o5wiTEQzCq-I-ZxmCxdiY0YhGFMT7zNDujJasa0AgKGXtOr6-DLSVrB/pub?output=csv';
 
-    const categoryMap = new Map();
+    const container = document.getElementById('channelContainer');
+    const categories = {};
 
-    function createCategorySection(category) {
-      const container = document.createElement('div');
-      container.className = 'category-section';
-
-      const title = document.createElement('h2');
-      title.textContent = category;
-      title.style.margin = '40px 0 20px';
-      title.style.fontSize = '1.8rem';
-      title.style.color = '#1abc9c';
-      container.appendChild(title);
-
-      const grid = document.createElement('div');
-      grid.className = 'channel-container';
-      container.appendChild(grid);
-
-      document.body.insertBefore(container, document.querySelector('footer'));
-      categoryMap.set(category, grid);
-    }
-
-    function createCard(channel) {
-      const card = document.createElement('div');
-      card.style.background = '#fff';
-      card.style.borderRadius = '16px';
-      card.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
-      card.style.padding = '20px';
-      card.style.display = 'flex';
-      card.style.flexDirection = 'column';
-      card.style.alignItems = 'center';
-      card.style.textAlign = 'center';
-      card.style.transition = 'transform 0.3s';
-      card.onmouseover = () => card.style.transform = 'scale(1.03)';
-      card.onmouseout = () => card.style.transform = 'scale(1)';
-
-      card.innerHTML = `
-        <img src="${channel.Image}" alt="Channel" style="width: 100px; height: 100px; border-radius: 12px; object-fit: cover; margin-bottom: 15px;" />
-        <h3 style="font-size: 1.3rem; color: #2c3e50;">${channel.Name}</h3>
-        <p style="color: #777;">Subscribers: ${channel.Subscribers}</p>
-        <p style="color: #1abc9c; font-weight: 600;">Price: ₹${channel.Price}</p>
-        <a href="${channel.Link}" target="_blank" style="margin-top: 15px; background: #1abc9c; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">See Details</a>
+    function createCard(data) {
+      return `
+        <div class="card">
+          <img src="${data['Image 1']}" alt="Channel Image">
+          <h3>${data['Channel Name']}</h3>
+          <p>${data['Description']}</p>
+          <div class="stats">👁️ Views: ${data['Lifetime Views']}</div>
+          <div class="stats">💰 Price: ${data['Price']}</div>
+          <div class="buttons">
+            <a class="buy-btn" href="${data['Buy Link']}" target="_blank">Buy Now</a>
+            <a class="details-btn" href="${data['More Details Link']}" target="_blank">More Details</a>
+          </div>
+        </div>
       `;
-      return card;
     }
 
-    function init() {
-      fetch(sheetURL)
-        .then(res => res.text())
-        .then(csvText => {
-          const rows = csvText.split('\n').map(row => row.split(','));
-          const headers = rows[0];
-          const data = rows.slice(1).map(row => {
-            const obj = {};
-            headers.forEach((h, i) => obj[h.trim()] = row[i]?.trim());
-            return obj;
-          });
-
-          data.forEach(channel => {
-            const category = channel.Category || 'Uncategorized';
-            if (!categoryMap.has(category)) {
-              createCategorySection(category);
-            }
-            const container = categoryMap.get(category);
-            const card = createCard(channel);
-            container.appendChild(card);
-          });
+    fetch(sheetURL)
+      .then(res => res.text())
+      .then(csvText => {
+        const rows = Papa.parse(csvText, { header: true }).data;
+        rows.forEach(row => {
+          const category = row['Category'] || 'Uncategorized';
+          if (!categories[category]) categories[category] = [];
+          categories[category].push(row);
         });
-    }
 
-    window.addEventListener('DOMContentLoaded', init);
+        for (let cat in categories) {
+          const section = document.createElement('div');
+          section.className = 'channel-category';
+          section.innerHTML = `<h2>${cat}</h2><hr><div class="channel-list">${categories[cat].map(createCard).join('')}</div>`;
+          container.appendChild(section);
+        }
+      });
   </script>
+
+  <!-- PapaParse for CSV parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+
 </body>
 </html>
